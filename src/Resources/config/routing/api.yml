@@ -1,0 +1,3 @@
+phone_api:
+  resource: "@EvrinomaPhoneBundle/Controller/PhoneApiController.php"
+  type: annotation

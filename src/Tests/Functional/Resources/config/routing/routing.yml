@@ -1,0 +1,2 @@
+phone:
+    resource: "@EvrinomaPhoneBundle/Resources/config/routes.yml"

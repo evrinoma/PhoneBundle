@@ -1,0 +1,5 @@
+services:
+  evrinoma.phone.fixtures.phone:
+    class: Evrinoma\PhoneBundle\Fixtures\PhoneFixtures
+    tags:
+      - { name: doctrine.fixture.orm }

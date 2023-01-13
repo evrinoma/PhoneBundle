@@ -1,0 +1,26 @@
+Evrinoma\PhoneBundle\Model\Phone\AbstractPhone:
+  exclusion_policy: ALL
+  properties:
+    id:
+      groups: [ API_GET_PHONE, API_POST_PHONE, API_PUT_PHONE, ]
+      expose: true
+    createdAt:
+      type: DateTimeImmutable<'Y-m-d H:i'>
+      groups: [ API_GET_PHONE, API_POST_PHONE, API_PUT_PHONE, ]
+      expose: true
+    updatedAt:
+      type: DateTimeImmutable<'Y-m-d H:i'>
+      groups: [ API_GET_PHONE, API_POST_PHONE, API_PUT_PHONE, ]
+      expose: true
+    number:
+      groups: [ API_GET_PHONE, API_POST_PHONE, API_PUT_PHONE, ]
+      expose: true
+    country:
+      groups: [ API_GET_PHONE, API_POST_PHONE, API_PUT_PHONE, ]
+      expose: true
+    code:
+      groups: [ API_GET_PHONE, API_POST_PHONE, API_PUT_PHONE, ]
+      expose: true
+    description:
+      groups: [ API_GET_PHONE, API_POST_PHONE, API_PUT_PHONE, ]
+      expose: true

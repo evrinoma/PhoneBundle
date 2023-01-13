@@ -1,0 +1,97 @@
+services:
+  Evrinoma\PhoneBundle\Controller\PhoneApiController:
+    alias: evrinoma.phone.api.controller
+    public: true
+
+  evrinoma.phone.api.controller:
+    class: Evrinoma\PhoneBundle\Controller\PhoneApiController
+    arguments:
+      - '@jms_serializer'
+      - '@request_stack'
+      - '@evrinoma.dto.factory'
+      - '@evrinoma.phone.facade'
+    autowire: true
+
+  evrinoma.phone.facade:
+    class: Evrinoma\PhoneBundle\Facade\Phone\Facade
+    arguments:
+      - '@evrinoma.phone.command.manager'
+      - '@evrinoma.phone.query.manager'
+      - '@evrinoma.phone.adaptor'
+    autowire: true
+
+  Evrinoma\PhoneBundle\Facade\Phone\FacadeInterface:
+    alias: evrinoma.phone.facade
+
+  evrinoma.phone.factory:
+    class: Evrinoma\PhoneBundle\Factory\Phone\Factory
+    public: true
+    arguments:
+
+  evrinoma.phone.orm.repository:
+    class: Evrinoma\PhoneBundle\Repository\Orm\Phone\PhoneRepository
+    public: true
+    arguments:
+
+  evrinoma.phone.command.manager:
+    class: Evrinoma\PhoneBundle\Manager\CommandManager
+    arguments:
+      - '@evrinoma.phone.validator'
+      - '@evrinoma.phone.repository'
+      - '@evrinoma.phone.factory'
+      - '@evrinoma.phone.command.mediator'
+
+  Evrinoma\PhoneBundle\Manager\CommandManagerInterface:
+    alias: evrinoma.phone.command.manager
+
+  evrinoma.phone.query.manager:
+    class: Evrinoma\PhoneBundle\Manager\QueryManager
+    arguments:
+      - '@evrinoma.phone.repository'
+
+  Evrinoma\PhoneBundle\Manager\QueryManagerInterface:
+    alias: evrinoma.phone.query.manager
+    
+  evrinoma.phone.validator:
+    class: Evrinoma\PhoneBundle\Validator\PhoneValidator
+    public: true
+    arguments:
+
+  Evrinoma\PhoneBundle\Validator\PhoneValidator:
+    alias: evrinoma.phone.validator
+
+  evrinoma.phone.query.orm.mediator:
+    class: Evrinoma\PhoneBundle\Mediator\Orm\QueryMediator
+    public: true
+    arguments:
+
+  Evrinoma\PhoneBundle\Mediator\Orm\QueryMediator:
+    alias: evrinoma.phone.query.orm.mediator
+
+  evrinoma.phone.command.mediator:
+    class: Evrinoma\PhoneBundle\Mediator\CommandMediator
+    public: true
+    arguments:
+
+  Evrinoma\PhoneBundle\Mediator\CommandMediator:
+    alias: evrinoma.phone.command.mediator
+
+  Evrinoma\PhoneBundle\Mediator\CommandMediatorInterface:
+    alias: evrinoma.phone.command.mediator
+
+  evrinoma.phone.pre.validator:
+    class: Evrinoma\PhoneBundle\PreValidator\DtoPreValidator
+    public: true
+    arguments:
+
+  Evrinoma\PhoneBundle\PreValidator\DtoPreValidator:
+    alias: evrinoma.phone.pre.validator
+
+  Evrinoma\PhoneBundle\PreValidator\DtoPreValidatorInterface:
+    alias: evrinoma.phone.pre.validator
+
+  evrinoma.phone.phone.form.rest.group:
+    class: Evrinoma\PhoneBundle\Form\Rest\Phone\PhoneChoiceType
+    arguments:
+      - '@evrinoma.phone.query.manager'
+    tags: { - name: form.type }

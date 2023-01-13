@@ -1,0 +1,9 @@
+services:
+  evrinoma.phone.constraint.property.code:
+    class: Evrinoma\PhoneBundle\Constraint\Property\Code
+
+  evrinoma.phone.constraint.property.number:
+    class: Evrinoma\PhoneBundle\Constraint\Property\Number
+
+  evrinoma.phone.constraint.property.country:
+    class: Evrinoma\PhoneBundle\Constraint\Property\Country

@@ -1,0 +1,9 @@
+services:
+  evrinoma.phone.test.functional.action.phone:
+    class: Evrinoma\PhoneBundle\Tests\Functional\Action\BasePhone
+    public: true
+    arguments:
+
+  Evrinoma\PhoneBundle\Tests\Functional\Action\BasePhone:
+    alias: evrinoma.phone.test.functional.action.phone
+    public: true
