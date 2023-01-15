@@ -22,4 +22,6 @@ use Evrinoma\PhoneBundle\DtoCommon\ValueObject\Immutable\NumberInterface;
 
 interface PhoneApiDtoInterface extends DtoInterface, IdInterface, CodeInterface, CountryInterface, NumberInterface, DescriptionInterface
 {
+    public const PHONE = 'phone';
+    public const PHONES = PhoneApiDtoInterface::PHONE.'s';
 }

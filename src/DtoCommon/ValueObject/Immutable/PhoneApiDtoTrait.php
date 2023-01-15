@@ -15,12 +15,12 @@ namespace Evrinoma\PhoneBundle\DtoCommon\ValueObject\Immutable;
 
 use Evrinoma\DtoBundle\Dto\DtoInterface;
 use Evrinoma\PhoneBundle\Dto\PhoneApiDto;
-use Evrinoma\PhoneBundle\Dto\PhoneApiDtoInterface;
+use Evrinoma\PhoneBundle\Dto\PhoneApiDtoInterface as BasePhoneApiDtoInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 trait PhoneApiDtoTrait
 {
-    protected ?PhoneApiDtoInterface $phoneApiDto = null;
+    protected ?BasePhoneApiDtoInterface $phoneApiDto = null;
 
     public function genRequestPhoneApiDto(?Request $request): ?\Generator
     {
@@ -41,7 +41,7 @@ trait PhoneApiDtoTrait
         return null !== $this->phoneApiDto;
     }
 
-    public function getPhoneApiDto(): PhoneApiDtoInterface
+    public function getPhoneApiDto(): BasePhoneApiDtoInterface
     {
         return $this->phoneApiDto;
     }

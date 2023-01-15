@@ -16,4 +16,5 @@ namespace Evrinoma\PhoneBundle\Repository;
 interface AliasInterface
 {
     public const PHONE = 'phone';
+    public const PHONES = AliasInterface::PHONE.'s';
 }
