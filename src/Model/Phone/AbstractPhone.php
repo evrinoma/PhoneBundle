@@ -30,7 +30,7 @@ abstract class AbstractPhone implements PhoneInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="country", type="string", length=255, nullable=true)
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     protected $description;
     /**
