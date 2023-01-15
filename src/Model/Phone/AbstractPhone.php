@@ -20,7 +20,7 @@ use Evrinoma\UtilsBundle\Entity\IdTrait;
 
 /**
  * @ORM\MappedSuperclass
- * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="idx_phone", columns={"country", "code", "number"})})
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="idx_phone", columns={"country", "code", "number", "description"})})
  */
 abstract class AbstractPhone implements PhoneInterface
 {
@@ -30,25 +30,25 @@ abstract class AbstractPhone implements PhoneInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     * @ORM\Column(name="description", type="string", length=127, nullable=true)
      */
     protected $description;
     /**
      * @var string
      *
-     * @ORM\Column(name="country", type="string", length=255, nullable=false)
+     * @ORM\Column(name="country", type="string", length=31, nullable=false)
      */
     protected $country;
     /**
      * @var string
      *
-     * @ORM\Column(name="code", type="string", length=255, nullable=false)
+     * @ORM\Column(name="code", type="string", length=31, nullable=false)
      */
     protected $code;
     /**
      * @var string
      *
-     * @ORM\Column(name="number", type="string", length=255, nullable=false)
+     * @ORM\Column(name="number", type="string", length=127, nullable=false)
      */
     protected $number;
 
