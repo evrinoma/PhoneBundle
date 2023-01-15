@@ -27,7 +27,12 @@ abstract class AbstractPhone implements PhoneInterface
     use CreateUpdateAtTrait;
     use DescriptionTrait;
     use IdTrait;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="country", type="string", length=255, nullable=true)
+     */
+    protected $description;
     /**
      * @var string
      *
