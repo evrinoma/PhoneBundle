@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Evrinoma\PhoneBundle\Dto\Preserve;
 
-use Evrinoma\DtoCommon\ValueObject\Immutable\DescriptionInterface;
+use Evrinoma\DtoCommon\ValueObject\Mutable\DescriptionInterface;
 use Evrinoma\DtoCommon\ValueObject\Mutable\IdInterface;
 use Evrinoma\PhoneBundle\DtoCommon\ValueObject\Mutable\CodeInterface;
 use Evrinoma\PhoneBundle\DtoCommon\ValueObject\Mutable\CountryInterface;

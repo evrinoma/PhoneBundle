@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Evrinoma\PhoneBundle\Dto\Preserve;
 
-use Evrinoma\DtoCommon\ValueObject\Mutable\DescriptionTrait;
+use Evrinoma\DtoCommon\ValueObject\Preserve\DescriptionTrait;
 use Evrinoma\DtoCommon\ValueObject\Preserve\IdTrait;
 use Evrinoma\PhoneBundle\DtoCommon\ValueObject\Preserve\CodeTrait;
 use Evrinoma\PhoneBundle\DtoCommon\ValueObject\Preserve\CountryTrait;
