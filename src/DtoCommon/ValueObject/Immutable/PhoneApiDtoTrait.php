@@ -22,13 +22,15 @@ trait PhoneApiDtoTrait
 {
     protected ?BasePhoneApiDtoInterface $phoneApiDto = null;
 
+    protected static string $classPhoneApiDto = PhoneApiDto::class;
+
     public function genRequestPhoneApiDto(?Request $request): ?\Generator
     {
         if ($request) {
             $phone = $request->get(PhoneApiDtoInterface::PHONE);
             if ($phone) {
                 $newRequest = $this->getCloneRequest();
-                $phone[DtoInterface::DTO_CLASS] = PhoneApiDto::class;
+                $phone[DtoInterface::DTO_CLASS] = static::$classPhoneApiDto;
                 $newRequest->request->add($phone);
 
                 yield $newRequest;
