@@ -95,15 +95,18 @@ class PhoneFixtures extends AbstractFixture implements FixtureGroupInterface, Or
         $short = self::getReferenceName();
         $i = 0;
 
-        foreach (static::$data as $record) {
+        foreach ($this->getData() as $record) {
             /** @var BasePhone $entity */
-            $entity = new static::$class();
+            $entity = $this->getEntity();
             $entity
                 ->setDescription($record[PhoneApiDtoInterface::DESCRIPTION])
                 ->setNumber($record[PhoneApiDtoInterface::NUMBER])
                 ->setCode($record[PhoneApiDtoInterface::CODE])
                 ->setCountry($record[PhoneApiDtoInterface::COUNTRY])
                 ->setCreatedAt(new \DateTimeImmutable($record['created_at']));
+
+            $this->expandEntity($entity);
+
             $this->addReference($short.$i, $entity);
             $manager->persist($entity);
             ++$i;
