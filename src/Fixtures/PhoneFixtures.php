@@ -105,7 +105,7 @@ class PhoneFixtures extends AbstractFixture implements FixtureGroupInterface, Or
                 ->setCountry($record[PhoneApiDtoInterface::COUNTRY])
                 ->setCreatedAt(new \DateTimeImmutable($record['created_at']));
 
-            $this->expandEntity($entity);
+            $this->expandEntity($entity, $record);
 
             $this->addReference($short.$i, $entity);
             $manager->persist($entity);
