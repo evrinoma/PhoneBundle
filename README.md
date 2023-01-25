@@ -25,7 +25,7 @@
                  недостающие значения можно разрешить только на уровне Mediator
         entity: App\Phone\Entity\Phone сущность
         constraints: Вкл/выкл проверки полей сущности по умолчанию 
-        dto_class: App\Phone\Dto\PhoneDto класс dto с которым работает сущность
+        dto: App\Phone\Dto\PhoneDto класс dto с которым работает сущность
         decorates:
           command - декоратор mediator команд тел.номера 
           query - декоратор mediator запросов тел.номера
