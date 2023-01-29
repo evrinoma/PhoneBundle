@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Evrinoma\PhoneBundle\Form\Rest\Phone;
 
 use Doctrine\DBAL\Exception\TableNotFoundException;
-use Evrinoma\PhoneBundle\Dto\PhoneApiDto;
 use Evrinoma\PhoneBundle\Dto\PhoneApiDtoInterface;
 use Evrinoma\PhoneBundle\Exception\PhoneNotFoundException;
 use Evrinoma\PhoneBundle\Manager\QueryManagerInterface;
@@ -25,11 +24,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PhoneChoiceType extends AbstractType
 {
+    protected static string $dtoClass;
+
     private QueryManagerInterface $queryManager;
 
-    public function __construct(QueryManagerInterface $queryManager)
+    public function __construct(QueryManagerInterface $queryManager, string $dtoClass)
     {
         $this->queryManager = $queryManager;
+        static::$dtoClass = $dtoClass;
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -38,7 +40,7 @@ class PhoneChoiceType extends AbstractType
             $value = [];
             try {
                 if ($options->offsetExists('data')) {
-                    $criteria = $this->queryManager->criteria(new PhoneApiDto());
+                    $criteria = $this->queryManager->criteria(new static::$dtoClass());
                     switch ($options->offsetGet('data')) {
                         case PhoneApiDtoInterface::NUMBER:
                             foreach ($criteria as $entity) {

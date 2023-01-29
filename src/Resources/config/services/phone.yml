@@ -90,7 +90,7 @@ services:
   Evrinoma\PhoneBundle\PreValidator\DtoPreValidatorInterface:
     alias: evrinoma.phone.pre.validator
 
-  evrinoma.phone.phone.form.rest.group:
+  evrinoma.phone.phone.form.rest.phone:
     class: Evrinoma\PhoneBundle\Form\Rest\Phone\PhoneChoiceType
     arguments:
       - '@evrinoma.phone.query.manager'
