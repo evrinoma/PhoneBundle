@@ -60,26 +60,43 @@ class BasePhone extends AbstractServiceTest implements BasePhoneTestInterface
 
     public function actionCriteriaNotFound(): void
     {
-        $find = $this->criteria([PhoneApiDtoInterface::DTO_CLASS => static::getDtoClass(), PhoneApiDtoInterface::ID => Id::wrong()]);
+        $find = $this->criteria([
+            PhoneApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            PhoneApiDtoInterface::ID => Id::wrong(),
+        ]);
         $this->testResponseStatusNotFound();
         Assert::assertArrayHasKey(PayloadModel::PAYLOAD, $find);
 
-        $find = $this->criteria([PhoneApiDtoInterface::DTO_CLASS => static::getDtoClass(), PhoneApiDtoInterface::ID => Id::value(), PhoneApiDtoInterface::DESCRIPTION => Description::wrong()]);
+        $find = $this->criteria([
+            PhoneApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            PhoneApiDtoInterface::ID => Id::value(),
+            PhoneApiDtoInterface::DESCRIPTION => Description::wrong(),
+        ]);
         $this->testResponseStatusNotFound();
         Assert::assertArrayHasKey(PayloadModel::PAYLOAD, $find);
     }
 
     public function actionCriteria(): void
     {
-        $find = $this->criteria([PhoneApiDtoInterface::DTO_CLASS => static::getDtoClass(), PhoneApiDtoInterface::ID => Id::value()]);
+        $find = $this->criteria([
+            PhoneApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            PhoneApiDtoInterface::ID => Id::value(),
+        ]);
         $this->testResponseStatusOK();
         Assert::assertCount(1, $find[PayloadModel::PAYLOAD]);
 
-        $find = $this->criteria([PhoneApiDtoInterface::DTO_CLASS => static::getDtoClass(), PhoneApiDtoInterface::DESCRIPTION => Description::value()]);
+        $find = $this->criteria([
+            PhoneApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            PhoneApiDtoInterface::DESCRIPTION => Description::value(),
+        ]);
         $this->testResponseStatusOK();
         Assert::assertCount(1, $find[PayloadModel::PAYLOAD]);
 
-        $find = $this->criteria([PhoneApiDtoInterface::DTO_CLASS => static::getDtoClass(), PhoneApiDtoInterface::COUNTRY => Country::value(), PhoneApiDtoInterface::CODE => Code::value()]);
+        $find = $this->criteria([
+            PhoneApiDtoInterface::DTO_CLASS => static::getDtoClass(),
+            PhoneApiDtoInterface::COUNTRY => Country::value(),
+            PhoneApiDtoInterface::CODE => Code::value(),
+        ]);
         $this->testResponseStatusOK();
         Assert::assertCount(4, $find[PayloadModel::PAYLOAD]);
     }
@@ -99,7 +116,13 @@ class BasePhone extends AbstractServiceTest implements BasePhoneTestInterface
     {
         $find = $this->assertGet(Id::value());
 
-        $updated = $this->put(static::getDefault([PhoneApiDtoInterface::ID => Id::value(), PhoneApiDtoInterface::DESCRIPTION => Description::value(), PhoneApiDtoInterface::NUMBER => Number::value(), PhoneApiDtoInterface::CODE => Code::value(), PhoneApiDtoInterface::COUNTRY => Country::value()]));
+        $updated = $this->put(static::getDefault([
+            PhoneApiDtoInterface::ID => Id::value(),
+            PhoneApiDtoInterface::DESCRIPTION => Description::value(),
+            PhoneApiDtoInterface::NUMBER => Number::value(),
+            PhoneApiDtoInterface::CODE => Code::value(),
+            PhoneApiDtoInterface::COUNTRY => Country::value(),
+        ]));
         $this->testResponseStatusOK();
 
         Assert::assertEquals($find[PayloadModel::PAYLOAD][0][PhoneApiDtoInterface::ID], $updated[PayloadModel::PAYLOAD][0][PhoneApiDtoInterface::ID]);
@@ -130,7 +153,7 @@ class BasePhone extends AbstractServiceTest implements BasePhoneTestInterface
 
     public function actionDeleteUnprocessable(): void
     {
-        $response = $this->delete(Id::empty());
+        $response = $this->delete(Id::blank());
         Assert::assertArrayHasKey(PayloadModel::PAYLOAD, $response);
         $this->testResponseStatusUnprocessable();
     }
@@ -153,22 +176,34 @@ class BasePhone extends AbstractServiceTest implements BasePhoneTestInterface
         $this->testResponseStatusCreated();
         $this->checkResult($created);
 
-        $query = static::getDefault([PhoneApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][PhoneApiDtoInterface::ID], PhoneApiDtoInterface::NUMBER => Number::empty()]);
+        $query = static::getDefault([
+            PhoneApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][PhoneApiDtoInterface::ID],
+            PhoneApiDtoInterface::NUMBER => Number::blank(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        $query = static::getDefault([PhoneApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][PhoneApiDtoInterface::ID], PhoneApiDtoInterface::CODE => Code::empty()]);
+        $query = static::getDefault([
+            PhoneApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][PhoneApiDtoInterface::ID],
+            PhoneApiDtoInterface::CODE => Code::blank(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        $query = static::getDefault([PhoneApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][PhoneApiDtoInterface::ID], PhoneApiDtoInterface::COUNTRY => Country::empty()]);
+        $query = static::getDefault([
+            PhoneApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][PhoneApiDtoInterface::ID],
+            PhoneApiDtoInterface::COUNTRY => Country::blank(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
-        $query = static::getDefault([PhoneApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][PhoneApiDtoInterface::ID], PhoneApiDtoInterface::DESCRIPTION => Description::empty()]);
+        $query = static::getDefault([
+            PhoneApiDtoInterface::ID => $created[PayloadModel::PAYLOAD][0][PhoneApiDtoInterface::ID],
+            PhoneApiDtoInterface::DESCRIPTION => Description::blank(),
+        ]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
