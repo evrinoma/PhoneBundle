@@ -96,6 +96,7 @@ final class PhoneApiController extends AbstractWrappedApiController implements A
         try {
             $this->facade->post($phoneApiDto, $group, $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
@@ -144,6 +145,7 @@ final class PhoneApiController extends AbstractWrappedApiController implements A
         try {
             $this->facade->put($phoneApiDto, $group, $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
@@ -193,6 +195,7 @@ final class PhoneApiController extends AbstractWrappedApiController implements A
         try {
             $this->facade->delete($phoneApiDto, '', $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
@@ -263,6 +266,7 @@ final class PhoneApiController extends AbstractWrappedApiController implements A
         try {
             $this->facade->criteria($phoneApiDto, $group, $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
@@ -311,6 +315,7 @@ final class PhoneApiController extends AbstractWrappedApiController implements A
         try {
             $this->facade->get($phoneApiDto, $group, $json);
         } catch (\Exception $e) {
+            $json = [];
             $error = $this->setRestStatus($e);
         }
 
